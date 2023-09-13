@@ -1,75 +1,91 @@
 ﻿@page "/Armala"
 @using PizzaBlazor.Shared.Models;
 
-<h3>Hágalo usted mismo!</h3>
+<div class="container text-center">
+    <h3>Hágalo usted mismo!</h3>
 
-<div class="row">
-    <div class="col-6">
-        @if (tamanos != null)
-        {
-            <select class="form-select" aria-label="Default select example" @onchange="TamanoFunc">
-                <option selected hidden>Selecciona el tamaño</option>
-                @foreach (var tamano in tamanos)
-                {
-                    <option value=@tamano.Id>@tamano.Tamano</option>
-                }
-
-
-            </select>
-        }
-    </div>
-
-    <div class="col-6">
-        @tamano_selec.Tamano
-        @tamano_selec.Precio
-    </div>
-    
-</div>
-
-<div class="row">
-    <div class="col-6">
-        @if (masas != null)
-        {
-            <select class="form-select" aria-label="Default select example" @onchange="MasaFunc">
-                <option selected hidden>Selecciona la masa</option>
-                @foreach (var masa in masas)
-                {
-                    <option value=@masa.Id>@masa.Tipo</option>
-                }
-
-
-            </select>
-        }
-    </div>
-
-    <div class="col">
-        @masa_selec.Tipo
-        @masa_selec.Precio
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-6">
-        @if (ingredientes != null && masa_selec.Id > 0)
-        {
-            @foreach (var ingrediente in ingredientes)
+    <div class="row">
+        <div class="col-6">
+            @if (tamanos != null)
             {
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        @ingrediente.Nombre
-                    </label>
-                </div>
+                <select class="form-select" aria-label="Default select example" @onchange="TamanoFunc">
+                    <option selected hidden>Selecciona el tamaño</option>
+                    @foreach (var tamano in tamanos)
+                    {
+                        <option value=@tamano.Id>@tamano.Tamano</option>
+                    }
+
+
+                </select>
             }
-            
-        }
+        </div>
+
+        <div class="col-6">
+            <table class="table-success">
+                <tr></tr>
+            </table>
+            @tamano_selec.Tamano
+            @tamano_selec.Precio
+        </div>
+
     </div>
 
-    <div class="col-6">
-        @ingrediente_selec.Nombre
-        @ingrediente_selec.Precio
+    <div class="row">
+        <div class="col-6">
+            @if (masas != null && tamano_selec.Id > 0)
+            {
+                <select class="form-select" aria-label="Default select example" @onchange="MasaFunc">
+                    <option selected hidden>Selecciona la masa</option>
+                    @foreach (var masa in masas)
+                    {
+                        <option value=@masa.Id>@masa.Tipo</option>
+                    }
+
+
+                </select>
+            }
+        </div>
+
+        <div class="col">
+            @masa_selec.Tipo
+            @masa_selec.Precio
+        </div>
     </div>
 
+    <div class="row">
+        <div class="col-6">
+            @if (ingredientes != null && masa_selec.Id > 0)
+            {
+                @foreach (var ingrediente in ingredientes)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" @onchange="eventArg => {IngSel(ingrediente, eventArg);}">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            @ingrediente.Nombre
+                        </label>
+                    </div>
+                }
+
+            }
+        </div>
+
+        <div class="col-6">
+            Ingredientes
+            <br />
+            @valor_total_ingredientes
+            @if (ingredientes != null && tamano_selec.Id > 0)
+            {
+                valor_final = valor_total_ingredientes + masa_selec.Precio + tamano_selec.Precio;
+            }
+            <br />
+            <br />
+            Valor final
+            @valor_final
+
+
+        </div>
+
+    </div>
 </div>
 
 
@@ -81,6 +97,15 @@
     Tamanos tamano_selec = new Tamanos();
     TipoMasa masa_selec = new TipoMasa();
     Ingrediente ingrediente_selec = new Ingrediente();
+
+    List<Ingrediente> ingredientesSel = new List<Ingrediente>();
+
+    float valor_total_ingredientes;
+
+    float valor_final = 0.0f;
+
+
+    
 
     protected override async Task OnInitializedAsync()
     {
@@ -105,7 +130,8 @@
             new Ingrediente{Id = 1, Nombre = "Queso", Precio = 20.0f},
             new Ingrediente{Id = 2, Nombre = "Peperoni", Precio = 35.0f},
             new Ingrediente{Id = 3, Nombre = "Carnes frías", Precio = 30.0f},
-            new Ingrediente{Id = 4, Nombre = "Vegetariana", Precio = 15.0f},
+            new Ingrediente{Id = 4, Nombre = "Champiñon", Precio = 15.0f},
+            new Ingrediente{Id = 5, Nombre = "Jamón", Precio = 20.0f},
         };
     }
 
@@ -134,5 +160,31 @@
         int idint = int.Parse(id);
 
         ingrediente_selec = ingredientes.Where(ing => ing.Id == idint).FirstOrDefault();
+    }
+
+    private void IngSel(Ingrediente ingrediente, ChangeEventArgs args)
+    {
+        bool prueba = bool.Parse(args.Value.ToString());
+
+
+        if (prueba)
+        {
+            ingredientesSel.Add(ingrediente);
+        }
+        else
+        {
+            ingredientesSel.Remove(ingrediente);
+        }
+
+        valor_total_ingredientes = 0.0f;
+        foreach (var elemento in ingredientesSel)
+        {
+            valor_total_ingredientes += elemento.Precio;
+        }
+
+        
+
+
+
     }
 }
