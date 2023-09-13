@@ -28,10 +28,22 @@
                         <th scope="col">Precio</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-light">
                     <tr>
-                        <td>@tamano_selec.Tamano</td>
+                        <td>Tamaño</td>
                         <td>@tamano_selec.Precio</td>
+                    </tr>
+                    <tr>
+                        <td>Tipo de masa</td>
+                        <td>@masa_selec.Precio</td>
+                    </tr>
+                    <tr>
+                        <td>Ingredientes</td>
+                        <td>@valor_total_ingredientes</td>
+                    </tr>
+                    <tr>
+                        <td>Precio total</td>
+                        <td>@valor_final</td>
                     </tr>
                 </tbody>
                 
@@ -59,8 +71,8 @@
         </div>
 
         <div class="col">
-            @masa_selec.Tipo
-            @masa_selec.Precio
+            
+            
         </div>
     </div>
 
@@ -82,17 +94,16 @@
         </div>
 
         <div class="col-6">
-            Ingredientes
-            <br />
-            @valor_total_ingredientes
+            
+            
+            
             @if (ingredientes != null && tamano_selec.Id > 0)
             {
                 valor_final = valor_total_ingredientes + masa_selec.Precio + tamano_selec.Precio;
             }
-            <br />
-            <br />
-            Valor final
-            @valor_final
+            
+            
+            
 
 
         </div>
