@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link href="index_files/botones.css" type="text/css" rel="stylesheet"><link href="index_files/tablas.css" type="text/css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>
+	UG Kárdex de Estudiante
+</title>
+    <script src="index_files/jquery-3.4.1.js" type="text/javascript"></script>
+    <script src="index_files/bootstrap.js" type="text/javascript"></script>
+    <link href="index_files/bootstrap.css" rel="stylesheet" type="text/css">
+    <style>
+        html {
+            background: url(media/escalinatas.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: 100%;
+        }
+
+        .capa {
+            background-color: rgba(6, 37, 79, 0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .vertical-center {
+            min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+            min-height: 100vh; /* These two lines are counted as one :-)       */
+            display: flex;
+            align-items: center;
+        }
+
+        hr {
+            height: 1px;
+            background-color: #d5ae17;
+            border: none;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+        }
+
+        /* Slides */
+        .mySlides {
+            padding: 2px;
+            text-align: center;
+        }
+
+            .mySlides p {
+                color: #d5ae17;
+                font-size: large;
+            }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            padding: 12px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover, .next:hover {
+                color: #aeddff;
+            }
+
+        /* The dot/bullet/indicator container */
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        /* Add a background color to the active dot/circle */
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        @keyframes backInDown{
+            0%{-webkit-transform:translateY(-1200px) scale(.7);
+               transform:translateY(-1200px) scale(.7);
+               opacity:.7}
+            80%{-webkit-transform:translateY(0) scale(.7);
+                transform:translateY(0) scale(.7);
+                opacity:.7}
+            to{-webkit-transform:scale(1);
+               transform:scale(1);opacity:1}
+        }
+        
+        .animate__backInDown{
+            -webkit-animation-name:backInDown;
+            animation-name:backInDown;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes zoomIn{
+            0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}
+            50%{opacity:1}
+        }
+        
+        .animate__zoomIn{
+            -webkit-animation-name:zoomIn;
+            animation-name:zoomIn;
+            animation-duration: 1s;
+        }
+    </style>
+</head>
+<body class="capa" style="min-height: 100%;">
+    <form name="form1" method="post" action="./" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTEzMDc4MTU0NzgPZBYCAgMPZBYEAgEPDxYCHgRUZXh0ZWRkAgMPFgIfAGVkZAHNAmiLM7zNCbta0/Kcekz/XXksZrbGx+7zAfSPOK3Y">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6BF39B4B">
+</div>
+
+        <div id="mdlAvisoPago" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">AVISO</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <img src="index_files/UGTO_TW.png" alt="cred" style="width: 100%;">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">De acuerdo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mdl" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title"><span id="txtMdlTitulo"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="mdlGrupos" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Modalidad de los grupos</h4>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-success">
+                    <b>· Presencial:</b> coinciden en un mismo espacio físico los estudiantes y los docentes.<br><br>
+                    <b>· A distancia (en línea):</b> no hay coincidencia espacial de quienes participan en la UDA, se imparte de manera remota.<br><br>
+                    <b>· Semi presencial:</b> combina la mediación pedagógica de la modalidad presencial y a distancia para la totalidad de los estudiantes.<br><br>
+                    <b>· Híbrido:</b> la totalidad de los estudiantes se divide de manera síncrona, una parte en la modalidad presencial y el resto a distancia.</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="mdlDDHEU" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Derechos y deberes</h4>
+      </div>
+      <div class="modal-body">
+        <img src="index_files/DDHEU.jpg" alt="DDHEU" style="width: 100%;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+        <div class="vertical-center">
+            <div class="container align-self-center">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-sm-push-6" style="height: auto; padding-top: 100px;">
+                        <center>
+                            <img src="index_files/escudo.png" alt="escudo" style="width: 230px;" class="animate__zoomIn">
+                            <h1 style="color: #fff;" class="animate__backInDown"><span style="color: #d5ae17;">KÁRDEX</span> de Estudiante</h1>
+                        </center>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-6  col-sm-pull-6" style="background-color: rgba(6, 37, 79, 0.6); color: #fff; height: auto; border: 4px solid #d5ae17; border-radius: 12px; padding: 10px 40px 10px 40px;">
+                        <h1>Inicio de sesión</h1>
+                        <hr>
+                        
+                        <div class="input-group">
+                            <span class="input-group-addon" style="background-color: #aeddff;"><span><b>NUA</b> a seis dígitos:</span></span>
+                            <input name="txtUser" type="text" id="txtUser" class="form-control" style="background-color: #dff7ff;">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon" style="background-color: #aeddff;"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contraseña:</span></span>
+                            <input name="txtPass" type="password" id="txtPass" class="form-control" style="background-color: #dff7ff;">
+                        </div>
+                        <br>
+                        <center>
+                            <input type="submit" name="btnLogin" value="Acceder" id="btnLogin" class="btn btn-lg btn-warning">
+                        </center>
+                        <hr>
+                        <input type="submit" name="btnDir" value="Coordinadores de Asuntos Escolares" id="btnDir" class="btn btn-primary" style="width: 100%;"><br>
+                        <br>
+                        <a href="https://www.ugto.mx/tramites-escolares/calendario-academico" target="_blank" class="btn btn-primary" style="width: 100%;">Calendario Escolar</a><br>
+                        
+                        <div style="float: right; margin-top: 30px;">¿Olvidaste tu contraseña?<b><a style="color: #aeddff;" href="https://www.dae.ugto.mx/siiaealumnos/Registro/wfRegNUA.aspx">&nbsp;Recupérala aquí.</a></b></div>
+                        <div style="float: right; margin-top: 12px;">¿Alguna duda? Ingresa a la <b><a style="color: #f0ad4e;" href="https://www.dae.ugto.mx/ayudae" target="_blank">&nbsp;Mesa de ayuda AyuDAE.</a></b></div>
+                    </div>
+                    <div class="col-xs-12" id="divAvisos" style="color: rgb(255, 255, 255); background-color: rgba(6, 37, 79, 0.6); border: 2px solid rgb(213, 174, 23); border-radius: 12px; padding: 10px; margin-top: 10px; height: 145.717px;">
+
+                        <div class="slideshow-container">
+                            <a class="prev" onclick="plusSlides(-1)">❮</a><span style="color: #bbb;">AVISOS</span><a class="next" onclick="plusSlides(1)">❯</a>
+                            
+                            <div class="mySlides" style="display: none;">
+                                <center><p>SEGUIMIENTO DE TRÁMITES</p></center>
+                                <span>Disponible en el Menú 'Trámites' 
+la opción para que puedas visualizar las acciones realizadas previas a 
+la entrega de tu documento.</span>
+                            </div>
+                            
+                            <div class="mySlides" style="display: none;">
+                                <center><p>FORMATO DE PAGO EXAMEN DE REGULARIZACIÓN</p></center>
+                                <span>Se ha agregado el menú 'Regularizaciones' en donde si es el caso, podrás generar el formato de pago correspondiente.</span>
+                            </div>
+                            
+                            
+
+                            <div class="mySlides" style="">
+                                <center><p>PAGO DE INSCRIPCIÓN</p></center>
+                                <span>El formato de pago de inscripción 
+se obtiene de esta página.  Ningún pago generado externamente o 
+realizado por un monto menor al indicado podrá ser reconocido.</span>
+                            </div>
+                            
+                            
+
+                            <div class="mySlides" style="display: none;">
+                                <center><p>CONOCE TUS DERECHOS Y DEBERES</p></center>
+                                <span>Para revisar la infografía de la Defensoría de los Derechos Humanos en el Entorno Universitario da <label onclick="$('#mdlDDHEU').modal('show');">clic AQUÍ.</label>
+                                </span>
+                            </div>
+
+                            
+
+                            
+
+                            
+
+                            <div class="mySlides" style="display: none;">
+                                <center><p>CAMBIO DE CORREO PERSONAL (ALTERNO)</p></center>
+                                <span>Para cambiar tu correo alterno ingresa con tus credenciales y en el menú encontrarás la opción para realizar esta acción.<br>
+                                    ¿Tienes problemas con tu cuenta de correo institucional? Da clic <a style="color: #4cd3ff;" href="https://micuenta.ugto.mx/" target="_blank">AQUÍ.</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="opacity: 0.3; text-align: center; margin-top-20px;">
+                    <a href="https://www.hitwebcounter.com/" target="_blank">
+                    <img src="index_files/counter.png" title="Total Website Hits" alt="Web Hits" border="0"></a>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            function abreModal() {
+                $("#mdl").modal("show");
+            } 
+
+            function abreModalCal() {
+                /*$("#mdlCalendario").modal("show");*/
+                var inputDate = new Date("06/05/2022");
+                var todaysDate = new Date();
+                if (inputDate.setHours(0, 0, 0, 0) >= todaysDate.setHours(0, 0, 0, 0)) {
+                    $('#mdlAvisoPago').modal('show')
+                }
+                
+            }
+
+            var slideIndex = 1;
+            showSlides(slideIndex);
+            var interv = setInterval(function () { plusSlidesInterval(slideIndex); }, 8000);
+
+            function plusSlides(n) {
+                clearInterval(interv);
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                clearInterval(interv);
+                showSlides(slideIndex = n);
+            }
+
+            function plusSlidesInterval(n) {
+                slideIndex++;
+                showSlides(n + 1);
+            }
+
+            function showSlides(n) {
+                var i;
+                var max_h = 0;
+                var slides = document.getElementsByClassName("mySlides");
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    if (max_h < $(slides[i]).height()) {
+                        max_h = $(slides[i]).height()
+                    }
+                    slides[i].style.display = "none";
+                }
+                $("#divAvisos").height((max_h + 46));
+                $(slides[slideIndex - 1]).show(600);
+            }
+        </script>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+abreModalCal();//]]>
+</script>
+</form>
+
+
+</body></html>

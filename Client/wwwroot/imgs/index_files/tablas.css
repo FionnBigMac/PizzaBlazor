@@ -1,0 +1,27 @@
+﻿/* File Created: julio 23, 2013 */
+.table .paginadoTabla a
+{
+    color: #666666 !important;
+}
+
+.table .paginadoTabla td
+{
+    color: #666666 !important;
+    font-weight: bold;
+}
+
+.table .EmptyGrid {
+	color: #666666 !important;
+}
+
+.table .trError
+{
+    background-color: #FFF2F2;
+    color: #800000 !important;
+}
+
+.table .trOk
+{
+    background-color: #F0FFF8;
+    color: #006600 !important;
+}

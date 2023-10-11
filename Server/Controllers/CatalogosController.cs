@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +9,8 @@ using PizzaBlazor.Shared.Models;
 
 namespace PizzaBlazor.Server.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] //Si lo pones aquí todo tiene seguridad,
+                                                                                //si lo pones encima de un http sólo aplica en ese
     [Route("api/[controller]")]
     [ApiController]
     public class CatalogosController : ControllerBase
@@ -37,6 +41,7 @@ namespace PizzaBlazor.Server.Controllers
             
         }
 
+        
         [HttpGet("tipomasa")]
         public async Task<List<TipoMasa>> Masas()
         {

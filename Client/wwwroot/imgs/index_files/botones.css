@@ -1,0 +1,50 @@
+﻿.bAgregar16
+{
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+    background-image: url('Images/16/add.png');
+    background-repeat: no-repeat;
+    margin-right: 2px;
+}
+
+.bDelete16
+{
+    height: 16px;
+    display: inline-block;
+    background-image: url('Images/16/delete.png');
+    background-repeat: no-repeat;
+    margin-right: 2px;
+    width:16px;
+}
+
+
+
+.bOk16
+{
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+    background-image: url('Images/16/ok.png');
+    background-repeat: no-repeat;
+    margin-right: 2px;
+}
+
+.bIniciarEval22
+{
+    height: 22px;
+    width: 22px;
+    display: inline-block;
+    background-image: url('Images/22/btnIniciarEval.png');
+    background-repeat: no-repeat;
+    margin-right: 2px;
+}
+.bImprimir32
+{
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    background-image: url('Images/32/btnImprimir.png');
+    background-repeat: no-repeat;
+    margin-right: 2px;
+}
